@@ -27,18 +27,20 @@ def outcome(choice1, choice2):
     if choice1==False and choice2==False:
         return 0, 0
     if choice1==True and choice2==False:
-        return 3, -1
-    if choice1==False and choice2==True:
         return -1, 3
+    if choice1==False and choice2==True:
+        return 3, -1
 
 def fight(bot1, bot2, nos_rounds):
     for i in range(nos_rounds):
         # Bot choices are recorded
-        bot1_choices[i] = bot1.strategy()
-        bot2_choices[i] = bot2.strategy()
+        bot1_choices.append(bot1.strategy())
+        bot2_choices.append(bot2.strategy())
 
         # Record gain in coins for each bot
-        bot1_gain[i], bot1_gain[i] = outcome(bot1_choices[i], bot2_choices[i])
+        x, y = outcome(bot1_choices[i], bot2_choices[i])
+        bot1_gain.append(x)
+        bot2_gain.append(y)
 
         # Add each bot's choices to its own and the other bot's memory, to allow for learning strategies
         bot1.memory_own.append(bot1_choices[i])
@@ -50,9 +52,9 @@ def fight(bot1, bot2, nos_rounds):
     bot1.score = sum(bot1_gain)
     bot2.score = sum(bot2_gain)
     if bot1.score > bot2.score:
-        print(bot1.name, ' won!')
+        print(bot1.name, 'won!')
     elif bot2.score > bot1.score:
-        print(bot2.name, ' won!')
+        print(bot2.name, 'won!')
     else:
         print('It\'s a tie!')
     return True

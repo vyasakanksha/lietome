@@ -10,6 +10,7 @@ class Bot:
         self.name = name            # Name of the bot
         self.memory_own = []        # Memory of own choices
         self.memory_opponent = []   # Memory of opponent's choices. TODO: Correct data structure for multiple opponents?
+        self.score = 0              # Tracks the bot's score after each round. (?)
 
 
 class BotCopycat(Bot):
