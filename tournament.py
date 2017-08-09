@@ -1,3 +1,5 @@
+import bots
+
 # Ask user for number of bots in the competition
 
 # Assign to bot.nos_opponent
@@ -45,5 +47,13 @@ def fight(bot1, bot2, nos_rounds):
         bot2.memory_opponent.append(bot1_choices[i])
 
     print ('Fight complete!')
+    bot1.score = sum(bot1_gain)
+    bot2.score = sum(bot2_gain)
+    if bot1.score > bot2.score:
+        print(bot1.name, ' won!')
+    elif bot2.score > bot1.score:
+        print(bot2.name, ' won!')
+    else:
+        print('It\'s a tie!')
     return True
 
